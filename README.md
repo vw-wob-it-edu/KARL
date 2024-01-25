@@ -1,4 +1,4 @@
-# Webbasierte-KI 
+# KARL
 
 ## __Ziele:__
 
