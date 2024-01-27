@@ -1,0 +1,38 @@
+
+body {
+    background-image: linear-gradient(#35373a, #4b4e53);
+    font-family: 'Grape Nuts', cursive;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin-right: 50px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    color: #59ff00;
+}
+
+
+.mid {
+  color:#16d93d
+}
+
