@@ -7,11 +7,9 @@
 
     <link rel="stylesheet" href="styles/style.css"/>
     <link rel="stylesheet" href="styles/chat.css"/>
-    <link rel="stylesheet" href="styles/container.css"/>
+    <link rel="stylesheet" href="styles/image-container.css"/>
     <link rel="stylesheet" href="styles/speak.css"/>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
@@ -22,7 +20,7 @@
 </head>
 <body>
     <div class="head">
-        <p class="mid">
+        <p class="style-headline">
             <strong>KARL</strong><br>
         </p>
 
@@ -36,7 +34,7 @@
 
     </div>
     
-    <div class="container">
+    <div class="image-container">
 
         <div class="left-content">
             <img src="res/upload.png" alt="">
@@ -51,10 +49,17 @@
         </div>
     </div>
 
+    <section class="microphone-main">
+        <div class="input-microphone">
+            <button class="talk"><i class="fas fa-microphone-alt"></i></button>
+            <h1 class="microphone-style-text">Click here to speak</h1>
+        </div>
+    </section>
+
     <div class="chat">
 
         <main id="chat-container">
-            <div class="chat-message user-message">
+            <div class="chat-message user-message-chat">
               <p>User: Hallo, Karl!</p>
             </div>
             <div class="chat-message assistant-message">
@@ -62,21 +67,15 @@
             </div>
         </main>
         
-        <div class="user-input">
-            <input type="text" id="user-input" placeholder="Schreiben Sie eine Nachricht...">
-            <button onclick="sendMessage()">Senden</button>
+        <div class="user-input-chat">
+            <input class ="user-input-input" type="text" id="user-input" placeholder="Schreiben Sie eine Nachricht...">
+            <button class="user-button-chat" onclick="sendMessage()">Senden</button>
         </div>
 
     </div>
-    <section class="main">
-        <div class="input">
-            <button class="talk"><i class="fas fa-microphone-alt"></i></button>
-            <h1 class="content">Click here to speak</h1>
-        </div>
-    </section>
 
-    <script src="script/scripts.js"></script>
     <script src="script/app.js"></script>
+    <script src="script/chat-script.js"></script>
 
 </body>
 </html>

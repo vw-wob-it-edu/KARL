@@ -1,16 +1,20 @@
-
 const btn = document.querySelector('.talk');
-const content = document.querySelector('.content');
+const content = document.querySelector('.microphone-style-text');
 
 function speak(text) {
+    console.log("Speaking...")
     const text_speak = new SpeechSynthesisUtterance(text);
 
-    text_speak.rate = 1;
-    text_speak.volume = 1;
-    text_speak.pitch = 1;
+        text_speak.rate = 0.9;
+        text_speak.volume = 0.5;
+        text_speak.pitch = 0.9;
 
-    window.speechSynthesis.speak(text_speak);
-}
+        // Speak the text using the chosen voice
+        window.speechSynthesis.speak(text_speak);
+
+};
+
+
 
 function wishMe() {
     var day = new Date();
@@ -26,7 +30,7 @@ function wishMe() {
 }
 
 window.addEventListener('load', () => {
-    speak("Initializing JARVIS..");
+    speak("Initializing KARL..");
     wishMe();
 });
 
@@ -40,42 +44,68 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     console.log('Speech Recognition API is not available');
 }
 
-
-
 recognition.onresult = async (event) => {
     const currentIndex = event.resultIndex;
     const transcript = event.results[currentIndex][0].transcript;
     content.textContent = transcript;
 
-    // Save transcript and notify Node.js server
-    await saveTranscriptToNodeJS(transcript);
+    addUserMessage(transcript);
+
+    // Save transcript and notify Flask server
+    await saveTranscriptToFlask(transcript);
 };
 
-async function saveTranscriptToNodeJS(transcript) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/save_transcript', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({ transcript: transcript }));
+async function saveTranscriptToFlask(transcript) {
+    try {
+        // Send transcript to Flask server
+        const response = await fetch('http://localhost:5000/process_transcript', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ transcript: transcript }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const serverMessage = data.message;
+            console.log('Flask server response:', serverMessage);
+            addAssistantMessage(serverMessage);
+            speak(serverMessage);
     
-    console.log("create transcript");
-
-    // Handle success response from Python server
-    const pythonSuccessEndpoint = 'http://localhost:3000/process_success';
-    const pythonSuccessRequest = new XMLHttpRequest();
-
-    pythonSuccessRequest.onreadystatechange = function () {
-        if (pythonSuccessRequest.readyState === 4 && pythonSuccessRequest.status === 200) {
-            console.log('Python server success:', pythonSuccessRequest.responseText);
+            // Do something with the serverMessage if needed
+        } else {
+            console.log('Error from Flask server:', response.status, response.statusText);
         }
-    };
-
-    pythonSuccessRequest.open('POST', pythonSuccessEndpoint, true);
-    pythonSuccessRequest.setRequestHeader('Content-Type', 'application/json');
-    pythonSuccessRequest.send();
+    } catch (error) {
+        console.error('Error:', error);
+    }      
 }
 
 btn.addEventListener('click', () => {
     content.textContent = "Listening....";
-    console.log("test");
     recognition.start();
 });
+
+
+
+function addUserMessage(transcript) {
+    var chatContainer = document.getElementById("chat-container");
+    var userMessage = document.createElement("div");
+    userMessage.className = "chat-message user-message-chat";
+    userMessage.innerHTML = "<p>User: " + transcript + "</p>";
+
+    chatContainer.appendChild(userMessage);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function addAssistantMessage(message) {
+    var chatContainer = document.getElementById("chat-container");
+    var assistantMessage = document.createElement("div");
+    assistantMessage.className = "chat-message assistant-message";
+    assistantMessage.innerHTML = "<p>Karl: " + message + "</p>";
+
+    chatContainer.appendChild(assistantMessage);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+

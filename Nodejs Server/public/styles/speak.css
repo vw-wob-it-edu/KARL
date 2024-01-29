@@ -1,45 +1,43 @@
-.main {
-    background-image: linear-gradient(#35373a, #4b4e53);
-    min-height: 100vh;
+.microphone-main {
     position: relative;
     width: 100%;
-    background: #000;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   
-  .main .image-container {
+.microphone-main .image-container {
     padding: 10px;
   }
   
-  .main .image-container .image {
+.microphone-main .image-container .image {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .main .image-container .image img {
+.microphone-main .image-container .image img {
     width: 350px;
     align-items: center;
   }
   
-  .main .image-container h1 {
+.microphone-main .image-container h1 {
     color: #00bcd4;
     text-align: center;
     margin-bottom: 10px;
     font-size: 40px;
   }
   
-  .main .image-container p {
+.microphone-main .image-container p {
     color: #324042;
     text-align: center;
     margin-bottom: 40px;
   }
   
-  .main .input {
+.microphone-main .input-microphone {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,7 +47,7 @@
     background: rgb(202 253 255 / 50%);
   }
   
-  .main .input .talk {
+.microphone-main .input-microphone .talk {
     background: transparent;
     outline: none;
     border: none;
@@ -62,12 +60,12 @@
     cursor: pointer;
   }
   
-  .main .input .talk i {
+.microphone-main .input-microphone .talk i {
     font-size: 20px;
     color: #aed0d0;
   }
   
-  .main .input .content {
+.microphone-main .input-microphone .microphone-style-text {
     color: #aed0d0;
     font-size: 15px;
     margin-right: 20px;
