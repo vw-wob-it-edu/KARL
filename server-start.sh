@@ -9,14 +9,14 @@ run_serve() {
 # Funktion zum Starten des Node.js-Servers
 start_node_server() {
     echo "Starting Node.js server..."
-    cd /home/marvin/Desktop/server/KARL/Nodejs\ Server/
+    cd /home/daniel/Schreibtisch/project_KARL/KARL/Nodejs\ Server/
     gnome-terminal --title="Node.js Server" -- bash -c "node server.js; exec bash"
 }
 
 # Funktion zum Ausführen von "python3 python.py"
 run_python_script() {
     echo "Running Python script..."
-    cd /home/marvin/Desktop/server/KARL/Nodejs\ Server/public/python/
+    cd /home/daniel/Schreibtisch/project_KARL/KARL/Nodejs\ Server/public/python/
     gnome-terminal --title="Python Script" -- bash -c "python3 python.py; exec bash"
 }
 

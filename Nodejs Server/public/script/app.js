@@ -1,5 +1,16 @@
 const btn = document.querySelector('.talk');
 const content = document.querySelector('.microphone-style-text');
+const fileInput = document.getElementById("fileInput");
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+// Check if SpeechRecognition API is available
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+    console.log('Speech Recognition API is available');
+} else {
+    console.log('Speech Recognition API is not available');
+}
+
 
 function speak(text) {
     console.log("Speaking...")
@@ -34,28 +45,27 @@ window.addEventListener('load', () => {
     wishMe();
 });
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
 
-// Check if SpeechRecognition API is available
-if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-    console.log('Speech Recognition API is available');
-} else {
-    console.log('Speech Recognition API is not available');
-}
 
-recognition.onresult = async (event) => {
-    const currentIndex = event.resultIndex;
-    const transcript = event.results[currentIndex][0].transcript;
-    content.textContent = transcript;
+fileInput.addEventListener("change", e => {
+    const file = fileInput.files[0];
+    const reader = new FileReader();
 
-    addUserMessage(transcript);
+    reader.readAsDataURL(file);
 
-    // Save transcript and notify Flask server
-    await saveTranscriptToFlask(transcript);
-};
+    reader.addEventListener("load", () => {
+        console.log("reader.result" + reader.result);
+        const message = "What is the person holding?"
+        saveTranscriptToFlask(reader.result, message);
 
-async function saveTranscriptToFlask(transcript) {
+    });
+});
+
+
+async function saveTranscriptToFlask(transcript, message) {
+    console.log("send transcript and message");
+    console.log("transcript send by app.js" + transcript);
+    console.log("message send by app.js: " + message);
     try {
         // Send transcript to Flask server
         const response = await fetch('http://localhost:5000/process_transcript', {
@@ -63,7 +73,7 @@ async function saveTranscriptToFlask(transcript) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ transcript: transcript }),
+            body: JSON.stringify({ transcript: transcript, message: message }),
         });
 
         if (response.ok) {
@@ -109,3 +119,10 @@ function addAssistantMessage(message) {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
+
+
+function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    addUserMessage(userInput);
+    saveTranscriptToFlask(userInput);
+  }
