@@ -109,3 +109,13 @@ function addAssistantMessage(message) {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
+
+
+function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    addUserMessage(userInput);
+    saveTranscriptToFlask(userInput);
+    
+
+  }
+

@@ -19,33 +19,13 @@
 
 </head>
 <body>
-    <div class="head">
-        <p class="style-headline">
-            <strong>KARL</strong><br>
-        </p>
-
-        <nav class="navbar">
-            <ul>
-                <li><a href="#">Talk</a></li>
-                <li><a href="#">Chat</a></li>
-                <li><a href="#">Scan</a></li>
-            </ul>
-        </nav>
-
-    </div>
-    
     <div class="image-container">
-
-        <div class="left-content">
-            <img src="res/upload.png" alt="">
+        <div class="tv-karl">
+            <img id="main-image" src="res/tv_transp.png" alt="tv" class="tv">
+            <img id="karl" src="res/karl_tile_lense.png" alt="karl" class="karlintv">
         </div>
-        
-        <div class="mid-content">
-            <img src="res/KARL.jpg" alt="" class="karl">
-        </div>
-
-        <div class="right-content">
-            <img src="res/speaker.png" alt="">
+        <div>
+            <button class="on-button" onclick="turnTvOn()"></button>
         </div>
     </div>
 
@@ -60,22 +40,25 @@
 
         <main id="chat-container">
             <div class="chat-message user-message-chat">
-              <p>User: Hallo, Karl!</p>
+              <p>User: Hello, Karl!</p>
             </div>
             <div class="chat-message assistant-message">
-              <p>Karl: Guten Tag! Wie kann ich Ihnen heute behilflich sein?</p>
+              <p>Karl: Hello, how can I help you?</p>
             </div>
         </main>
         
         <div class="user-input-chat">
-            <input class ="user-input-input" type="text" id="user-input" placeholder="Schreiben Sie eine Nachricht...">
-            <button class="user-button-chat" onclick="sendMessage()">Senden</button>
+            <input class ="user-input-input" type="text" id="user-input" placeholder="Send a message...">
+            <button class="user-button-chat" onclick="sendMessage()">Send</button>
         </div>
 
     </div>
 
+    <footer>
+        <p>&copy; 2024 KARL</p>
+    </footer>
+
     <script src="script/app.js"></script>
-    <script src="script/chat-script.js"></script>
 
 </body>
 </html>

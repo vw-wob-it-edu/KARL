@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from langchain.llms import Ollama
+from langchain_community.llms import Ollama
 import requests
 from flask_cors import CORS, cross_origin
 
