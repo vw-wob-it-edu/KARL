@@ -4,6 +4,7 @@ const fileInput = document.getElementById("fileInput");
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
+
 // Check if SpeechRecognition API is available
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     console.log('Speech Recognition API is available');
@@ -54,17 +55,55 @@ fileInput.addEventListener("change", e => {
     reader.readAsDataURL(file);
 
     reader.addEventListener("load", () => {
-        console.log("reader.result" + reader.result);
-        const message = "What is the person holding?"
-        saveTranscriptToFlask(reader.result, message);
+        prepareTranscript(null, reader.result, false);
 
     });
 });
 
 
+recognition.onresult = async (event) => {
+    const currentIndex = event.resultIndex;
+    const transcript = event.results[currentIndex][0].transcript;
+    content.textContent = transcript;
+
+    prepareTranscript(transcript, null, true);
+};
+
+
+function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    prepareTranscript(userInput, null, true);
+}
+
+
+function prepareTranscript(message, data, textbased) {
+    const savedImageData = localStorage.getItem('image_data');
+    console.log(savedImageData);
+
+    if (savedImageData != null) {
+        textbased = false;
+    }
+
+    if (textbased == true) {
+        addUserMessage(message);
+        saveTranscriptToFlask(null, message);
+    }
+
+    if (textbased == false) {
+        if (savedImageData != null) {
+            addUserMessage(message);
+            console.log(savedImageData);
+            saveTranscriptToFlask(savedImageData, message);
+            localStorage.removeItem('image_data');
+        } else {
+            localStorage.setItem('image_data', data); // Assuming 'data' should be stored in 'image_data'
+        }
+    }
+}
+
+
 async function saveTranscriptToFlask(transcript, message) {
-    console.log("send transcript and message");
-    console.log("transcript send by app.js" + transcript);
+    console.log("transcript send by app.js "  + transcript);
     console.log("message send by app.js: " + message);
     try {
         // Send transcript to Flask server
@@ -118,11 +157,3 @@ function addAssistantMessage(message) {
     chatContainer.appendChild(assistantMessage);
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
-
-
-
-function sendMessage() {
-    var userInput = document.getElementById("user-input").value;
-    addUserMessage(userInput);
-    saveTranscriptToFlask(userInput);
-  }
