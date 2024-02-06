@@ -4,6 +4,11 @@ const fileInput = document.getElementById("fileInput");
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
+//WebCam
+const webCamElement = document.getElementById("webCam");
+const canvasElement = document.getElementById("canvas");
+const webcam = new Webcam(webCamElement, "user", canvasElement);
+
 
 // Check if SpeechRecognition API is available
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -42,6 +47,7 @@ function wishMe() {
 }
 
 window.addEventListener('load', () => {
+    localStorage.removeItem('image_data');
     speak("Initializing KARL..");
     wishMe();
 });
@@ -75,6 +81,23 @@ function sendMessage() {
     prepareTranscript(userInput, null, true);
 }
 
+function start_webcam() {
+    console.log("Webcam started");
+    webcam.start();
+}
+
+function stop_webcam() {
+    console.log("Webcam stopped");
+    webcam.stop();
+}
+
+function takeAPicture() {
+    
+    let picture = webcam.snap();
+    document.querySelector("a").href = picture;
+    prepareTranscript(null, picture, false);
+    console.log(picture);
+}
 
 function prepareTranscript(message, data, textbased) {
     const savedImageData = localStorage.getItem('image_data');

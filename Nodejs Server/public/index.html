@@ -17,6 +17,7 @@
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script type="text/javascript" src="script/webcam-easy.min.js"></script>
 
 </head>
 <body>
@@ -41,6 +42,10 @@
             <img id="tv-off" src="res/tv2.png" alt="tv-off" class="tv-off">
             <img id="tv-on" src="res/tv_transp.png" alt="tv-on" class="tv-on">
             <img id="karlintv" src="res/karl_tile_lense.png" alt="karl" class="karlintv">
+
+            <video id ="webCam" autoplay playsinline width="800" height="600"></video>
+            <canvas id ="canvas"></canvas>
+    
         </div>
         
     </div>
@@ -58,6 +63,11 @@
         <button class="upload-button-button"></button>
             <input type="file" id="fileInput" accept="image/png, image/jpg, image/jpeg">
     </div>
+
+    <button onclick="start_webcam()" style="font-size:25px; background-color: grey; color: lightblue; border-radius: 25px;">click me</button>
+    <a download onclick="takeAPicture(); stop_webcam();">SNAP</a>
+
+
     <div class="chat">
 
         <main id="chat-container">
