@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/chat.css"/>
     <link rel="stylesheet" href="styles/image-container.css"/>
     <link rel="stylesheet" href="styles/speak.css"/>
+    <link rel="stylesheet" href="styles/menue.css"/>
 
     <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap" rel="stylesheet">
 
@@ -19,21 +20,29 @@
 
 </head>
 <body>
+    <label>
+        <input type="checkbox">
+        <div class="toggle">
+            <span class="middle_line"></span>
+        </div>
+
+        <div class="menue">
+            <h1>Settings</h1>
+            <ul>
+                <li><a href="#"><i class="on-off-image"> </i> onoff </a></li>
+                <li><a href="#"><i class="talk-image"> </i> talk </a></li>
+                <li><a href="#"><i class="upload-image"> </i> upload </a></li>
+                <li><a href="#"><i class="stream-image"> </i> stream</a></li>
+            </ul>
+        </div>
+    </label>
     <div class="image-container">
         <div class="tv-karl">
-            <img id="main-image" src="res/tv_transp.png" alt="tv" class="tv">
-            <img id="karl" src="res/karl_tile_lense.png" alt="karl" class="karlintv">
+            <img id="tv-off" src="res/tv2.png" alt="tv-off" class="tv-off">
+            <img id="tv-on" src="res/tv_transp.png" alt="tv-on" class="tv-on">
+            <img id="karlintv" src="res/karl_tile_lense.png" alt="karl" class="karlintv">
         </div>
-        <div>
-            <button class="on-button" onclick="turnTvOn()"></button>
-        </div>
-        <div class="left-content">
-            <input type="file" id="fileInput" accept="image/png, image/jpg, image/jpeg">
-
-            <div id="display_image"></div>
-
-            <img src="res/upload.png" alt="">
-        </div>
+        
     </div>
 
     <section class="microphone-main">
@@ -42,7 +51,13 @@
             <h1 class="microphone-style-text">Click here to speak</h1>
         </div>
     </section>
-
+    <div>
+        <button class="on-button" onclick="turnTvOn()"></button>
+    </div>
+    <div class="upload-button">
+        <button class="upload-button-button"></button>
+            <input type="file" id="fileInput" accept="image/png, image/jpg, image/jpeg">
+    </div>
     <div class="chat">
 
         <main id="chat-container">
@@ -66,7 +81,9 @@
         <p>&copy; 2024 KARL</p>
     </footer>
 
+    <script src="script/scripts.js"></script>
     <script src="script/app.js"></script>
+    
 
 </body>
 </html>

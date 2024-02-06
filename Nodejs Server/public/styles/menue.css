@@ -1,0 +1,65 @@
+.menu {
+    height: 100%;
+    width: 180px;
+    position: absolute;
+    transition: 0.5s ease;
+    transform: translateX(-180px);
+}
+
+h1 {
+    color: black;
+    font-weight: 800;
+    text-align: left;
+    padding-left: 50px;
+    pointer-events: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul li a {
+    color: black;
+    font-weight: 800;
+    padding: 5px 0;
+    display: block;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: 0.5s ease-out;
+}
+
+ul li:hover a{
+    color: white;
+    background-color: black;
+}
+
+ul li a i {
+    width: 40px;
+    text-align: center;
+}
+
+
+
+.toggle {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 23px;
+    left: 15px;
+    z-index: 3;
+    cursor: pointer;
+    border-radius: 2px;
+    background-color: white;
+    box-shadow: 0 0 10px black;
+}
+
+input:checked ~ .toggle{
+    left: 15px;
+    top: 23px;
+    width: 30px;
+}
+
+input:checked ~ .menu{
+    transform: translateX(0);
+    box-shadow: 0 0 15px black;
+}

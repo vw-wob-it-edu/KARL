@@ -1,0 +1,55 @@
+from langchain.document_loaders import PyPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.vectorstores import Chroma
+from langchain.embeddings import GPT4AllEmbeddings
+from langchain.llms import Ollama
+from langchain.callbacks.manager import CallbackManager
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from langchain.chains import RetrievalQA
+from langchain import hub
+
+def handle_pdf():
+    # Replace 'example.pdf' with the actual path to your PDF file
+    pdf_path = '/home/marvin/Desktop/server/KARL/Nodejs Server/public/python/wiki.pdf'
+    print(f"using PDF: {pdf_path}")
+
+    # Load PDF
+    loader = PyPDFLoader(pdf_path)
+    data = loader.load()
+
+    # Split into chunks 
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=100)
+    all_splits = text_splitter.split_documents(data)
+    print(f"Split into {len(all_splits)} chunks")
+
+    vectorstore = Chroma.from_documents(documents=all_splits,
+                                        embedding=GPT4AllEmbeddings())
+
+    # LLM
+    llm = Ollama(base_url='http://localhost:8080',
+                model="llama2",
+                verbose=True,
+                callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]))
+    print(f"Loaded LLM model {llm.model}")
+
+    # RAG prompt
+    QA_CHAIN_PROMPT = hub.pull("rlm/rag-prompt-llama")
+
+    # QA chain
+    qa_chain = RetrievalQA.from_chain_type(
+        llm,
+        retriever=vectorstore.as_retriever(),
+        chain_type_kwargs={"prompt": QA_CHAIN_PROMPT},
+    )
+
+    # Ask a question
+    question = f"Summarize this article and create information for a presentation for me {pdf_path}?"
+    result = qa_chain({"query": question})
+
+    # Print the result
+    print(result)
+
+    return result
+
+if __name__ == "__main__":
+    handle_pdf()

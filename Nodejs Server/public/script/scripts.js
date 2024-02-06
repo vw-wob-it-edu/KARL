@@ -1,36 +1,17 @@
-function sendMessage() {
-  var userInput = document.getElementById("user-input").value;
-  var chatContainer = document.getElementById("chat-container");
-  var userMessage = document.createElement("div");
-  userMessage.className = "chat-message user-message";
-  userMessage.innerHTML = "<p>User: " + userInput + "</p>";
- 
-  var assistantMessage = document.createElement("div");
-  assistantMessage.className = "chat-message assistant-message";
-  assistantMessage.innerHTML = "<p>Karl: Leider habe ich derzeit Urlaub und bin nicht zu erreichen. Bitte versuche es später nochmal!</p>";
- 
-  chatContainer.appendChild(userMessage);
-  chatContainer.appendChild(assistantMessage);
- 
-  chatContainer.scrollTop = chatContainer.scrollHeight;
-}
-var currentImageTv = 1;
-
+var currentImage = 1;
 
 function turnTvOn() {
-  var tvImage = document.getElementById("main-image");
+  var tvImage = document.getElementById("tv-off");
+  var tvTranspImage = document.getElementById("tv-on");
 
-  // Get the current image source
-  var currentSource = tvImage.src;
-
-  // Define the new image sources
-  var newImage1 = "res/tv.jpg";
-  var newImage2 = "res/tv_final.png";
-
-  // Check the current source and toggle to the other image
-  if (currentSource === newImage1) {
-    tvImage.src = newImage2;
+  // Toggle between images
+  if (currentImage === 1) {
+    tvImage.style.opacity = 0;
+    tvTranspImage.style.opacity = 1;
+    currentImage = 2;
   } else {
-    tvImage.src = newImage1;
+    tvImage.style.opacity = 1;
+    tvTranspImage.style.opacity = 0;
+    currentImage = 1;
   }
 }

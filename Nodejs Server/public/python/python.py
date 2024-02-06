@@ -5,6 +5,8 @@ from flask_cors import CORS, cross_origin
 import base64
 from io import BytesIO
 from PIL import Image
+from website import scan_website_llama2
+from pdf import handle_pdf
 
 app = Flask(__name__)
 python_port = 5000
@@ -13,8 +15,6 @@ CORS(app, supports_credentials=True)  # Enable CORS for all routes with credenti
 def take_command_llama2(command):
     # send command to AI (e.g., llama2)
     ollama = Ollama(base_url='http://localhost:8080', model='llama2')  # change model as needed
-    #text_ollama = ollama.invoke(command)
-    #print(text_ollama)
 
     text_ollama = ""
 
@@ -25,23 +25,19 @@ def take_command_llama2(command):
 
     return text_ollama
 
-def take_command_llava(image, message):
-
+def take_command_llava_image(image, message):
     bakllava = Ollama(base_url="http://localhost:8080", model="bakllava")
 
-
-    #file_path = "/home/daniel/Downloads/apple.jpg"
-    #pil_image = Image.open(file_path)
-    #image_b64 = convert_to_base64(pil_image)
     image_b64 = image.split(',')[1]
-    #plt_img_base64(image_b64)
 
     llm_with_image_context = bakllava.bind(images=[image_b64])
     response = llm_with_image_context.invoke(message)
-    #print(image_b64)
-    #print(response)
 
     return response
+
+def take_command_llama2_website(transcript, message):
+    # Implement the logic for processing website URL here
+    pass
 
 @app.route('/process_transcript', methods=['POST', 'OPTIONS'])
 @cross_origin(origin='http://127.0.0.1:3000', supports_credentials=True)
@@ -59,17 +55,24 @@ def process_transcript():
     transcript = data['transcript']
     message = data['message']
 
-    if transcript == None:
-        response_from_ollama = take_command_llama2(transcript)
-
+    if transcript is not None:
+        if transcript.startswith("data:image"):
+            print("Received Image")
+            response_from_ollama = take_command_llava_image(transcript, message)
+        else:
+            print("Received URL")
+            response_from_ollama = scan_website_llama2(transcript, message)
     else:
-        response_from_ollama = take_command_llava(transcript, message)
-    
+        print("command ollama")
+        print(f"Received transcript: {message}")
+        response_from_ollama = take_command_llama2(message)
+
+    #pdf
+    #handle_pdf(data,message)
 
     # Process the transcript (you can do more complex processing here)
     print(f"Received message: {message}")
    
-
     requests.post('http://localhost:3000/process_success', json={'message': response_from_ollama})
 
     return jsonify({'message': response_from_ollama, 'status': 'Transcript processed successfully'})

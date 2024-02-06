@@ -157,3 +157,4 @@ function addAssistantMessage(message) {
     chatContainer.appendChild(assistantMessage);
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
+
