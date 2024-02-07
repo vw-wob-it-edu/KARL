@@ -81,26 +81,6 @@ function sendMessage() {
     prepareTranscript(userInput, null, true);
 }
 
-function start_webcam() {
-    console.log("Webcam started");
-    webcam.start();
-    document.getElementById("animationPlayer").style.opacity = "0";
-}
-
-function stop_webcam() {
-    console.log("Webcam stopped");
-    webcam.stop();
-    document.getElementById("animationPlayer").style.opacity = "1";
-}
-
-function takeAPicture() {
-    
-    let picture = webcam.snap();
-    document.querySelector("button").href = picture;
-    prepareTranscript(null, picture, false);
-    console.log(picture);
-}
-
 function prepareTranscript(message, data, textbased) {
     const savedImageData = localStorage.getItem('image_data');
     console.log(savedImageData);
