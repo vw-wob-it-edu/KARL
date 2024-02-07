@@ -84,17 +84,19 @@ function sendMessage() {
 function start_webcam() {
     console.log("Webcam started");
     webcam.start();
+    document.getElementById("animationPlayer").style.opacity = "0";
 }
 
 function stop_webcam() {
     console.log("Webcam stopped");
     webcam.stop();
+    document.getElementById("animationPlayer").style.opacity = "1";
 }
 
 function takeAPicture() {
     
     let picture = webcam.snap();
-    document.querySelector("a").href = picture;
+    document.querySelector("button").href = picture;
     prepareTranscript(null, picture, false);
     console.log(picture);
 }
@@ -142,6 +144,7 @@ async function saveTranscriptToFlask(transcript, message) {
             const data = await response.json();
             const serverMessage = data.message;
             console.log('Flask server response:', serverMessage);
+            addToQueue('animation/back_server.mkv');
             addAssistantMessage(serverMessage);
             speak(serverMessage);
     

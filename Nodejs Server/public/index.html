@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/image-container.css"/>
     <link rel="stylesheet" href="styles/speak.css"/>
     <link rel="stylesheet" href="styles/menue.css"/>
+    <link rel="stylesheet" href="styles/buttons.css"/>
 
     <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap" rel="stylesheet">
 
@@ -20,53 +21,42 @@
     <script type="text/javascript" src="script/webcam-easy.min.js"></script>
     <script src="script/animation.js"></script>
 
-</head>
+</head>v
 <body>
-    <label>
-        <input type="checkbox">
-        <div class="toggle">
-            <span class="middle_line"></span>
-        </div>
-
-        <div class="menue">
-            <h1>Settings</h1>
-            <ul>
-                <li><a href="#"><i class="on-off-image"> </i> onoff </a></li>
-                <li><a href="#"><i class="talk-image"> </i> talk </a></li>
-                <li><a href="#"><i class="upload-image"> </i> upload </a></li>
-                <li><a href="#"><i class="stream-image"> </i> stream</a></li>
-            </ul>
-        </div>
-    </label>
+    
     <div class="image-container">
         <div class="tv-karl">
             <img id="tv-off" src="res/tv2.png" alt="tv-off" class="tv-off">
             <img id="tv-on" src="res/tv_transp.png" alt="tv-on" class="tv-on">
-            <video muted autoplay id="animationPlayer" src="animation/Fall down/fall_down.mkv" alt="karl" class="karlintv">
+            <video muted autoplay id="animationPlayer" src="animation/Fall down/fall_down.mkv" alt="karl"></video>
 
             <video id ="webCam" autoplay playsinline width="800" height="600"></video>
             <canvas id ="canvas"></canvas>
-    
+
+            <button id="start-webcam-button" onclick="start_webcam()">m</button>
+            <button id="snap-button" onclick="takeAPicture(); stop_webcam();">S</button>
+            <button id="on-off-button" class="on-button" onclick="turnTvOn(); addToQueue('animation/fall_down.mkv'); addToQueue('animation/nothing.mkv');">o</button>
+
         </div>
-        
+
     </div>
 
-    <div>
-        <button class="on-button" onclick="turnTvOn(); addToQueue('animation/fall_down.mkv'); addToQueue('animation/nothing.mkv');">Turn TV On</button>
-    </div>
-    <div class="upload-button">
-        <button class="upload-button-button"></button>
-            <input type="file" id="fileInput" accept="image/png, image/jpg, image/jpeg">
-    </div>
-
-    <button onclick="start_webcam()" style="font-size:25px; background-color: grey; color: lightblue; border-radius: 25px;">click me</button>
-    <a download onclick="takeAPicture(); stop_webcam();">SNAP</a>
 
     <section class="microphone-main">
         <div class="input-microphone">
             <button class="talk"><i class="fas fa-microphone-alt"></i></button>
             <h1 class="microphone-style-text">Click here to speak</h1>
+
+         
+            <label class="custom-file-upload">
+                <input type="file" id="fileInput" accept="image/png, image/jpg, image/jpeg">
+                <i class="fas fa-solid fa-cloud"></i>
+                <h1 class="cloud-style-text">Click here to upload</h1>
+            </label>
+            
+          
         </div>
+        
     </section>
 
 
@@ -83,7 +73,7 @@
         
         <div class="user-input-chat">
             <input class ="user-input-input" type="text" id="user-input" placeholder="Send a message...">
-            <button class="user-button-chat" onclick="sendMessage()">Send</button>
+            <button id="user-button-chat" onclick="sendMessage(); addToQueue('animation/to_server.mkv'); addToQueue('animation/on_server.mkv');">Send</button>
         </div>
 
     </div>

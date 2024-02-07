@@ -41,7 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40vw;
+    width: 60vw;
     height: 50px;
     border-radius: 20px;
     background: rgb(202 253 255 / 50%);
@@ -68,5 +68,45 @@
 .microphone-main .input-microphone .microphone-style-text {
     color: #aed0d0;
     font-size: 15px;
-    margin-right: 20px;
+    margin-right: 50px;
   }
+
+
+  .cloud-style-text {
+    display: inline-block;
+    color: #aed0d0;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+#fileInput {
+  width: 50px;
+  height: 50px;
+}
+
+
+.custom-file-upload {
+    display: flex;
+    background: transparent;
+    width: 170px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.custom-file-upload input[type="file"] {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+
+.custom-file-upload i {
+    font-size: 24px; /* Adjust size as needed */
+    padding: 10px;
+    cursor: pointer;
+    color: #aed0d0;
+}

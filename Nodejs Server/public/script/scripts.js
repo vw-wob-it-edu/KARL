@@ -15,3 +15,16 @@ function turnTvOn() {
     currentImage = 1;
   }
 }
+
+
+// Get the input field
+var input = document.getElementById("user-input");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Trigger the button element with a click
+    document.getElementById("user-button-chat").click();
+  }
+});
