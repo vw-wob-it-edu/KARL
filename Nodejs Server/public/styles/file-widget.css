@@ -1,0 +1,111 @@
+body {
+    background-color: black;
+}
+
+
+.blue-box {
+    width: 65%;
+    background: rgb(202 253 255 / 50%);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
+}
+
+#table-widget {
+    width: 100%;
+    border-spacing: 10px;
+}
+
+.table-section {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    width: 15%;
+
+}
+
+#image1,
+#image2,
+#image3 {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    background-color: orange;
+    border-radius: 20px;
+
+}
+
+
+.use-btn {
+    background: transparent;
+    outline: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    margin-right: 5px;
+
+}
+
+.download-btn {
+
+    background: transparent;
+    outline: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    margin-right: 5px;
+
+}
+
+
+.use-style-text, 
+.download-style-text {
+
+    color: white;
+    font-size: 16px;
+    
+}
+
+
+.use-style-text {
+    margin-right: 40px;
+}
+
+#image-figcation {
+    margin-top: 10px;
+}
+
+#toggle-btn1,
+#toggle-btn2,
+#toggle-btn3 {
+    color: black;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    padding: 5px 10px;
+}
+
+#toggle-btn1:hover,
+#toggle-btn2:hover,
+#toggle-btn3:hover {
+    background-color: #aaa;
+    transform: rotate(90deg);
+    cursor: none;
+}
+
+

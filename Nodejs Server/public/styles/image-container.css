@@ -1,70 +1,40 @@
-.img {
-    max-width: 100%;
-    max-height: 100%;
-}
 
-.responsive {
-    width: 100%;
-}
-
-.head {
-    color: whitesmoke;
-    width: 50%;
-    margin: auto;
-    font-size: 50px;
-    text-align: center;
-}
-
-.image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    height: 100%;
-}
   
-.tv-karl {
-    position: relative;
-    height: 100%;
-    width: 100%;
-} 
-#animationPlayer {
+  #animationPlayer {
     width: 50%;
     height: auto;
     position: absolute;
     top: 17%;
     left: 22.5%;
     z-index: 1;
-}
-
-#webCam, #canvas {
-
+  }
+  
+  #webCam, #canvas {
     width: 50%;
     height: auto;
     position: absolute;
     top: 20%;
     left: 22.5%;
     z-index: 0;
-
-}
+  }
   
-.tv-on {
+  .tv-on {
     width: 100%;
     height: auto;
     position: relative;
     z-index: 2;
-}
+  }
   
-.tv-off {
+  .tv-off {
     width: 100%;
     height: auto;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
-}
+  }
   
-.on-button {
+  .on-button {
     margin-top: 10px;
     background-color: none;
     border: none;
@@ -72,20 +42,20 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-}
+  }
   
-.upload-button {
+  .upload-button {
     margin-top: 10px;
     display: flex;
     align-items: center;
-}
+  }
   
-.upload-button-button {
+  .upload-button-button {
     background-color: #3498db;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     border: none;
-}
+  }
   

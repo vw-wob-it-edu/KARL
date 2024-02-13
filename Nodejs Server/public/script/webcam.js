@@ -27,8 +27,8 @@ function toggle_webcam() {
         const savedImageData = localStorage.getItem('snap_data');
 
         if (savedImageData != null) {
-            console.log("Send image to prepareTranscript");
-            prepareTranscript(null, savedImageData, false);
+            console.log("Send image to Widget");
+            handleImageUpload(savedImageData, 'Webcam Snap');
             localStorage.removeItem('snap_data');
         }
         

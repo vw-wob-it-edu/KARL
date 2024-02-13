@@ -5,14 +5,17 @@ function turnTvOn() {
   var tvTranspImage = document.getElementById("tv-on");
 
   // Toggle between images
-  if (currentImage === 1) {
+  if (currentImage === 1) { //on
     tvImage.style.opacity = 0;
     tvTranspImage.style.opacity = 1;
+    document.getElementById("user-input-chat").style.opacity = "1";
     currentImage = 2;
-  } else {
+  } else { //off
     tvImage.style.opacity = 1;
     tvTranspImage.style.opacity = 0;
     currentImage = 1;
+    document.getElementById("user-input-chat").style.opacity = "0";
+    clearQueue();
   }
 }
 
