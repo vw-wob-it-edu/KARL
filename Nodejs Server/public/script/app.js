@@ -47,25 +47,11 @@ function wishMe() {
 }
 
 window.addEventListener('load', () => {
+    document.getElementById("user-input-chat").style.opacity = "0";
     localStorage.removeItem('image_data');
     speak("Initializing KARL..");
     wishMe();
 });
-
-
-
-fileInput.addEventListener("change", e => {
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-
-    reader.addEventListener("load", () => {
-        prepareTranscript(null, reader.result, false);
-
-    });
-});
-
 
 recognition.onresult = async (event) => {
     const currentIndex = event.resultIndex;
@@ -78,8 +64,13 @@ recognition.onresult = async (event) => {
 
 function sendMessage() {
     var userInput = document.getElementById("user-input").value;
+
+    // Clear the input field
+    document.getElementById("user-input").value = "";
+
     prepareTranscript(userInput, null, true);
 }
+
 
 function prepareTranscript(message, data, textbased) {
     const savedImageData = localStorage.getItem('image_data');
@@ -123,8 +114,9 @@ async function saveTranscriptToFlask(transcript, message) {
         if (response.ok) {
             const data = await response.json();
             const serverMessage = data.message;
-            console.log('Flask server response:', serverMessage);
+            console.log('Flask server response:', `%c${serverMessage}`, 'color: blue; font-size: 14px;');
             addToQueue('animation/back_server.mkv');
+            addToQueue('animation/random/nothing_2.mkv');
             addAssistantMessage(serverMessage);
             speak(serverMessage);
     
@@ -145,22 +137,45 @@ btn.addEventListener('click', () => {
 
 
 function addUserMessage(transcript) {
+
+    text_paragraph = addParagraphs(transcript);
     var chatContainer = document.getElementById("chat-container");
     var userMessage = document.createElement("div");
     userMessage.className = "chat-message user-message-chat";
-    userMessage.innerHTML = "<p>User: " + transcript + "</p>";
+    userMessage.innerHTML = "<p>User: " + text_paragraph + "</p>";
 
     chatContainer.appendChild(userMessage);
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+    scrollToBottom();
 }
 
 function addAssistantMessage(message) {
+    text_paragraph = addParagraphs(message);
     var chatContainer = document.getElementById("chat-container");
     var assistantMessage = document.createElement("div");
     assistantMessage.className = "chat-message assistant-message";
-    assistantMessage.innerHTML = "<p>Karl: " + message + "</p>";
+    assistantMessage.innerHTML = "<p>Karl: " + text_paragraph + "</p>";
 
     chatContainer.appendChild(assistantMessage);
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+    scrollToBottom();
 }
 
+
+function addParagraphs(text) {
+
+    var paragraphs = text.split("\n");
+        
+        var fullText = '';
+
+        paragraphs.forEach(function(paragraph) {
+            fullText += '<p>' + paragraph + '</p>';
+        });
+
+        return fullText;
+}
+
+
+function scrollToBottom() {
+    var chatContainer = document.getElementById("scroll");
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+  

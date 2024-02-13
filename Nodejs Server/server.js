@@ -29,6 +29,7 @@ app.post('/save_transcript', async (req, res) => {
     await axios.post('http://localhost:5000/process_transcript', { transcript });
 });
 
+
 // Add the following route
 app.post('/process_success', (req, res) => {
     console.log('Success endpoint hit!');
