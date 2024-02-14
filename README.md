@@ -30,13 +30,13 @@ KARL's intelligence operates locally and can function without internet connectiv
   </summary>
 
 
- <div align="center">
- <b>KARL Künstlicher Assistent repräsentiert durch LLM</b><br>
-  <img width="600" src="samples/Image-sample.png" alt="Image Sample">
+   <div align="center">
+ <b>KARL is utilizing information from a website as a source. Check out the difference between the responses.</b><br>
+  <img width="600" src="samples/Website-sample.png" alt="Website Sample">
 
  <div align="center">
- <b>KARL Künstlicher Assistent repräsentiert durch LLM</b><br>
-  <img width="600" src="samples/Website-sample.png" alt="Website Sample">
+ <b>KARL is utilizing information from an image as a source. Based on that he can provide answers.</b><br>
+  <img width="600" src="samples/Image-sample.png" alt="Image Sample">
  
 </details>
 
