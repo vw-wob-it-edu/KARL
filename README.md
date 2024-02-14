@@ -54,44 +54,40 @@ Coming soon
 
 ## 💼 License
 
-Spotube is open source and licensed under the [BSD-4-Clause](/LICENSE) License.
-
-If you are concerned, you can [read the reason of choosing this license](https://dev.to/krtirtho/choosing-open-source-license-wisely-1m3p).
-
-##Services
-#Fonts:
+## Services
+# Fonts:
 
 - Roboto Mono: Used for code blocks and monospace text.
 - Grape Nuts: Presumably used for specific stylized text elements.
   
-#External Libraries and Scripts:
+# External Libraries and Scripts:
 - Core CSS and JS from pyscript.net: custom styling and functionality.
 - Font Awesome: Icon library for scalable vector icons.
 - Webcam Easy: Script for handling webcam functionalities.
 
-##Dependencies
+## Dependencies
 
-#Node.js/Express:
+# Node.js/Express:
 - Express: Framework for building web applications with Node.js.
 - Body Parser: Middleware for parsing incoming request bodies.
 - Axios: Promise-based HTTP client for making requests.
   
-#Python/Flask:
+# Python/Flask:
 - Flask: Micro web framework for Python.
 - Flask CORS: Extension for handling Cross-Origin Resource Sharing (CORS).
 - Langchain: Custom library for language processing tasks.
 
-##Scripts
+## Scripts
 
-#Web Page Loading:
+# Web Page Loading:
 - langchain.document_loaders.WebBaseLoader for loading web pages.
 - langchain.text_splitter.RecursiveCharacterTextSplitter for text splitting.
   
-#Embedding and Storing:
+# Embedding and Storing:
 - langchain.vectorstores.Chroma for vector storage.
 - langchain.llms.Ollama is used for language modeling.
   
-#Flask App:
+# Flask App:
 - Handles API endpoints for text processing and file handling.
 
 <div align="center"><h4>© Copyright KARL 2024</h4></div>
