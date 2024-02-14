@@ -1,0 +1,37 @@
+*{
+
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: 40;
+  font-weight: 400;
+  font-style: normal;
+  
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 1);
+  margin: 0;
+}
+
+
+.style-headline {
+  color:#16d93d
+}
+
+footer {
+    background-color: linear-gradient(#35373a, #4b4e53);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 1vw;
+}
+
+canvas { 
+
+  margin-top: -50px; /* Adjust this value as needed to lower the table */
+  background: -webkit-canvas(canv); 
+  width:120vw; height:120vh; 
+  z-index: -2;
+  position: absolute;
+  opacity: 0.2;
+}
