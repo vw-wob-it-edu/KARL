@@ -1,7 +1,7 @@
 
 <div align="center">
  <b>KARL Künstlicher Assistent repräsentiert durch LLM</b><br>
-  <img width="600" src="samples/Karl.png" alt="KARL">
+  <img width="60%" src="samples/Karl.png" alt="KARL">
 
  ---
 
