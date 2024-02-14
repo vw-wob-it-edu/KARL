@@ -26,7 +26,7 @@ KARL's intelligence operates locally and can function without internet connectiv
 
 <details>
   <summary>
-    <h2><code>[Click to show]</code> 🙏 Examples</h2>
+    <h2><code>[Click to show]</code> Examples</h2>
   </summary>
 
 
