@@ -54,29 +54,29 @@ Coming soon
 ## 💼 License
 
 ## Services
-# Fonts:
+## Fonts:
 
 - Roboto Mono: Used for code blocks and monospace text.
 - Grape Nuts: Presumably used for specific stylized text elements.
   
-# External Libraries and Scripts:
+## External Libraries and Scripts:
 - Core CSS and JS from pyscript.net: custom styling and functionality.
 - Font Awesome: Icon library for scalable vector icons.
 - Webcam Easy: Script for handling webcam functionalities.
 
-## Dependencies
+# Dependencies
 
-# Node.js/Express:
+## Node.js/Express:
 - Express: Framework for building web applications with Node.js.
 - Body Parser: Middleware for parsing incoming request bodies.
 - Axios: Promise-based HTTP client for making requests.
   
-# Python/Flask:
+## Python/Flask:
 - Flask: Micro web framework for Python.
 - Flask CORS: Extension for handling Cross-Origin Resource Sharing (CORS).
 - Langchain: Custom library for language processing tasks.
 
-## Scripts
+# Scripts
 
 # Web Page Loading:
 - langchain.document_loaders.WebBaseLoader for loading web pages.
