@@ -33,11 +33,11 @@ KARL's intelligence operates locally and can function without internet connectiv
 
 ## 📝Requirements
 
-Ubuntu version 22.04: 🐧🖥️2️⃣2️⃣.0️⃣4️⃣
-Minimum 20GB RAM: 💾2️⃣0️⃣GB
-Nvidia GPU for Ollama: 🎮💻🔥
-Minimum 10-core CPU: 💻🔟
-Google Chrome as the browser: 🌐🔍
+- Ubuntu version 22.04: 🐧🖥️2️⃣2️⃣.0️⃣4️⃣
+- Minimum 20GB RAM: 💾2️⃣0️⃣GB
+- Nvidia GPU for Ollama: 🎮💻🔥
+- Minimum 10-core CPU: 💻🔟
+- Google Chrome as the browser: 🌐🔍
 
 
 ## 📜 ⬇️ Installation guide
