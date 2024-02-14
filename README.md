@@ -78,15 +78,15 @@ Coming soon
 
 # Scripts
 
-# Web Page Loading:
+## Web Page Loading:
 - langchain.document_loaders.WebBaseLoader for loading web pages.
 - langchain.text_splitter.RecursiveCharacterTextSplitter for text splitting.
   
-# Embedding and Storing:
+## Embedding and Storing:
 - langchain.vectorstores.Chroma for vector storage.
 - langchain.llms.Ollama is used for language modeling.
   
-# Flask App:
+## Flask App:
 - Handles API endpoints for text processing and file handling.
 
 <div align="center"><h4>© Copyright KARL 2024</h4></div>
