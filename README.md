@@ -24,7 +24,7 @@ Karl is a small robot living inside a tube television. With the help of a librar
 
 KARL's intelligence operates locally and can function without internet connectivity in theory; it can also be switched to other AI models and process various types of documents.
 
-### Planned Upcomming features
+### 🕓 Planned Upcomming features
 
 - 🔗 **Expanded File Type Integration:** Incorporate additional document formats such as docx or excel.
 - 🤖 **AI-Powered Coding:** Utilize KARL as your primary tool for solving daily coding challenges.
@@ -43,7 +43,6 @@ Google Chrome as the browser: 🌐🔍
 ## 📜 ⬇️ Installation guide
 
 Coming soon
-
 
 
 ## 👥 The team
