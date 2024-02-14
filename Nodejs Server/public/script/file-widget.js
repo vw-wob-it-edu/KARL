@@ -27,11 +27,24 @@ function checkImageUploaded(imageId) {
 
 
 function useImage(imageId) {
-   const img = document.getElementById(imageId);
-   const imageData = img.getAttribute('src');
-   console.log("Using image: ", imageData);
-   prepareTranscript(null, imageData, false);
-}
+    const img = document.getElementById(imageId);
+    const imageData = img.getAttribute('src');
+ 
+    if (imageData.endsWith('pdf.png')) {
+        const figcaption = img.parentElement.querySelector('figcaption');
+        if (figcaption) {
+            const figcaptionText = figcaption.textContent;
+            console.log("Using image: ", figcaptionText);
+            prepareTranscript(null, figcaptionText, false);
+        } else {
+            console.log("No figcaption found for PDF image.");
+        }
+    } else {
+        console.log("Using image: ", imageData);
+        prepareTranscript(null, imageData, false);
+    }
+ }
+ 
 
  
  function downloadImage(imageUrl, imageName) {
@@ -57,9 +70,10 @@ function useImage(imageId) {
 
                 const fileName = file.name;
 
-                pdfToBase64(file, function(base64) {
+                handleImageUpload(null, fileName);
+
+                pdfToBase64(fileName, file, function(base64) {
                     console.log(base64);
-                    handleImageUpload(null, fileName);
                 });
                 
             } else {
@@ -99,11 +113,35 @@ function useImage(imageId) {
 }
 
 
-function pdfToBase64(file, callback) {
+function pdfToBase64(fileName, file, callback) {
     var reader = new FileReader();
     reader.onload = function(event) {
         var base64 = event.target.result.split(',')[1];
         callback(base64);
+        sendPDF(fileName, base64);
     };
     reader.readAsDataURL(file);
+}
+
+
+
+async function sendPDF(fileName, file) {
+    try {
+        const response = await fetch('http://localhost:5000/process_transcript', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ transcript: file, message: "PDF", fileName: fileName }),
+        });
+        if (response.ok) {
+            const data = await response.json();
+            const serverMessage = data.message;
+            console.log('Flask server response:', `${serverMessage}`);
+        } else {
+            console.log('Error from Flask server:', response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }      
 }

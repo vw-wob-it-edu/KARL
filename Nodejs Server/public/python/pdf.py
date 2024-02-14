@@ -8,9 +8,9 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import RetrievalQA
 from langchain import hub
 
-def handle_pdf():
-    # Replace 'example.pdf' with the actual path to your PDF file
-    pdf_path = '/home/marvin/Desktop/server/KARL/Nodejs Server/public/python/wiki.pdf'
+import json
+
+def handle_pdf(pdf_path, message):
     print(f"using PDF: {pdf_path}")
 
     # Load PDF
@@ -43,13 +43,15 @@ def handle_pdf():
     )
 
     # Ask a question
-    question = f"Summarize this article and create information for a presentation for me {pdf_path}?"
+    question = f"{message} {pdf_path}"
     result = qa_chain({"query": question})
 
-    # Print the result
-    print(result)
+    print(type(result))
 
-    return result
+    result_value = result["result"]
+
+    return result_value
+
 
 if __name__ == "__main__":
     handle_pdf()

@@ -92,7 +92,7 @@ function prepareTranscript(message, data, textbased) {
             saveTranscriptToFlask(savedImageData, message);
             localStorage.removeItem('image_data');
         } else {
-            localStorage.setItem('image_data', data); // Assuming 'data' should be stored in 'image_data'
+            localStorage.setItem('image_data', data);
         }
     }
 }
@@ -108,13 +108,13 @@ async function saveTranscriptToFlask(transcript, message) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ transcript: transcript, message: message }),
+            body: JSON.stringify({ transcript: transcript, message: message, fileName : null }),
         });
 
         if (response.ok) {
             const data = await response.json();
             const serverMessage = data.message;
-            console.log('Flask server response:', `%c${serverMessage}`, 'color: blue; font-size: 14px;');
+            console.log('Flask server response:', `${serverMessage}`);
             addToQueue('animation/back_server.mkv');
             addToQueue('animation/random/nothing_2.mkv');
             addAssistantMessage(serverMessage);
@@ -149,7 +149,18 @@ function addUserMessage(transcript) {
 }
 
 function addAssistantMessage(message) {
-    text_paragraph = addParagraphs(message);
+    console.log(message)
+
+    try {
+        text_paragraph = addParagraphs(message);
+    } catch (error) {
+
+        const obj = JSON.parse(message);
+
+        console.log(obj.result);
+        
+    }
+    
     var chatContainer = document.getElementById("chat-container");
     var assistantMessage = document.createElement("div");
     assistantMessage.className = "chat-message assistant-message";

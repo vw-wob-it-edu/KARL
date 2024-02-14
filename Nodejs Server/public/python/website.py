@@ -14,6 +14,7 @@ from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
 import re
+import json
 
 def scan_website_llama2(message):
 
@@ -79,7 +80,10 @@ def scan_website_llama2(message):
     question = f"{message} {url}?"
     result = qa_chain({"query": question})
 
-    return result
+
+    result_value = result["result"]
+
+    return result_value
     
 
 
