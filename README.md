@@ -74,8 +74,11 @@ This guide will walk you through the installation process step by step.
 ## Step 3: Install Additional Packages
 
 `sudo apt full-upgrade`
+
 `sudo apt install npm`
+
 `sudo apt install google-chrome-stable`
+
 `sudo apt-get install -f`
 
 ## Step 4: Install Python Libraries
@@ -90,7 +93,9 @@ This guide will walk you through the installation process step by step.
 ## Step 6: Clone KARL Repository
 
 `cd Desktop`
+
 `git clone https://github.com/vw-wob-it-edu/KARL.git`
+
 `cd KARL`
 
 ## Step 7: Install Python Requirements
@@ -104,6 +109,7 @@ This guide will walk you through the installation process step by step.
 ## Step 9: Path where project is located
 
 `cd KARL`
+
 `./server-start.sh`
 
 ## 👥 The team
