@@ -65,7 +65,7 @@ This guide will walk you through the installation process step by step.
 
 ### Step 1: Update Package Manager
 
-`sudo apt update`
+    sudo apt update
 
 ### Step 2: Install Required Packages
 
