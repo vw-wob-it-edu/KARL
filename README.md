@@ -27,7 +27,7 @@ KARL's intelligence operates locally and can function without internet connectiv
 
 <details>
   <summary>
-    <h2><code>[Click to show]</code> Examples</h2>
+    <h2><code>[Examples]</code></h2>
   </summary>
 
 
@@ -60,8 +60,64 @@ KARL's intelligence operates locally and can function without internet connectiv
 
 ## 📜 ⬇️ Installation guide
 
-Coming soon
+This guide will walk you through the installation process step by step.
 
+<details>
+  <summary>
+    <h2><code>[Installation guide]</code></h2>
+  </summary>
+
+### Step 1: Update Package Manager
+
+    sudo apt update
+
+### Step 2: Install Required Packages
+
+    sudo apt install curl git nodejs npm python3 python3-pip wget
+
+### Step 3: Install Additional Packages
+
+    sudo apt full-upgrade
+    sudo apt install npm
+    sudo apt install google-chrome-stable
+    sudo apt-get install -f
+
+### Step 4: Install Python Libraries
+
+    pip install flask flask-cors langchain
+
+
+### Step 5: Install Ollama
+
+    sudo curl https://ollama.ai/install.sh | sh
+
+### Step 6: Pull required LLMs
+
+    ollama serve
+    ollama pull llava
+    ollama pull llama2
+
+### Step 7: Clone KARL Repository
+
+    cd Desktop
+    git clone https://github.com/vw-wob-it-edu/KARL.git
+    cd KARL`
+
+### Step 8: Install Python Requirements
+
+    pip install -r requirements.txt
+
+### Step 9: Reboot System
+
+    sudo reboot
+
+### Step 10: Start server
+
+    cd KARL-Server #where project is located
+    chmod +x server-start.sh
+    ./server-start.sh
+
+</details>
 
 ## 👥 The team
 
