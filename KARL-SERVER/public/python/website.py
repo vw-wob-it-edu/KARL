@@ -1,5 +1,3 @@
-# Load web page
-import argparse
 
 from langchain.document_loaders import WebBaseLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -7,18 +5,15 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 # Embed and store
 from langchain.vectorstores import Chroma
 from langchain.embeddings import GPT4AllEmbeddings
-from langchain.embeddings import OllamaEmbeddings # We can also try Ollama embeddings
+from langchain.embeddings import OllamaEmbeddings
 
 from langchain.llms import Ollama
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
 import re
-import json
 
 def scan_website_llama2(message):
-
-    #filter out url
 
     # Regular expression to match URLs
     url_pattern = re.compile(r'https?://\S+|www\.\S+')

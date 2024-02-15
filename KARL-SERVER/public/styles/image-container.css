@@ -1,61 +1,71 @@
+/*Format of Animations*/
+#animationPlayer {
+  width: 50%;
+  height: auto;
+  position: absolute;
+  top: 17%;
+  left: 22.5%;
+  z-index: 1;
+}
+  
+/*Format of Webcam*/
+#webCam, #canvas {
+  width: 50%;
+  height: auto;
+  position: absolute;
+  top: 20%;
+  left: 22.5%;
+  z-index: 0;
+}
+  
+/*Format of TVs*/
+.tv-on {
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+  
+.tv-off {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.tv-karl {
+  border: 10px solid #555555;
+  outline: 10px solid #555555;
+  outline-offset: -15px; 
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 
   
-  #animationPlayer {
-    width: 50%;
-    height: auto;
-    position: absolute;
-    top: 17%;
-    left: 22.5%;
-    z-index: 1;
-  }
+/*Format of control buttons*/
+.on-button {
+  margin-top: 10px;
+  background-color: none;
+  border: none;
+  color: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
   
-  #webCam, #canvas {
-    width: 50%;
-    height: auto;
-    position: absolute;
-    top: 20%;
-    left: 22.5%;
-    z-index: 0;
-  }
+.upload-button {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
   
-  .tv-on {
-    width: 100%;
-    height: auto;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .tv-off {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  }
-  
-  .on-button {
-    margin-top: 10px;
-    background-color: none;
-    border: none;
-    color: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .upload-button {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .upload-button-button {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-  }
+.upload-button-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+}
   

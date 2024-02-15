@@ -1,5 +1,5 @@
+/*Website Font settings*/
 *{
-
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: 40;
   font-weight: 400;
@@ -8,16 +8,18 @@
   box-sizing: border-box;
 }
 
+/*Body*/
 body {
   background-color: rgba(0, 0, 0, 1);
   margin: 0;
 }
 
-
+/*Headline style*/
 .style-headline {
   color:#16d93d
 }
 
+/*Style of Footer*/
 footer {
     background-color: linear-gradient(#35373a, #4b4e53);
     color: white;
@@ -26,9 +28,9 @@ footer {
     font-size: 1vw;
 }
 
+/*Backround*/
 canvas { 
-
-  margin-top: -50px; /* Adjust this value as needed to lower the table */
+  margin-top: -50px;
   background: -webkit-canvas(canv); 
   width:120vw; height:120vh; 
   z-index: -2;

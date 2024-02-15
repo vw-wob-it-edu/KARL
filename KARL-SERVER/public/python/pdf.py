@@ -8,7 +8,6 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import RetrievalQA
 from langchain import hub
 
-import json
 
 def handle_pdf(pdf_path, message):
     print(f"using PDF: {pdf_path}")

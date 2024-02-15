@@ -8,37 +8,12 @@ from PIL import Image
 from website import scan_website_llama2
 from pdf import handle_pdf
 import re
+from ollama import take_command_llama2, take_command_llava_image
 
 app = Flask(__name__)
 python_port = 5000
 CORS(app, supports_credentials=True)  # Enable CORS for all routes with credentials
 
-def take_command_llama2(command):
-    # send command to AI (e.g., llama2)
-    ollama = Ollama(base_url='http://localhost:8080', model='llama2', verbose = True)  # change model as needed
-
-    text_ollama = ""
-
-    for char in ollama.stream(command):
-        # Send success response back to the JavaScript app with the response from take_command
-        print(char)
-        text_ollama += char
-
-    return text_ollama
-
-def take_command_llava_image(image, message):
-    bakllava = Ollama(base_url="http://localhost:8080", model="llava")
-
-    image_b64 = image.split(',')[1]
-
-    llm_with_image_context = bakllava.bind(images=[image_b64])
-    response = llm_with_image_context.invoke(message)
-
-    return response
-
-def take_command_llama2_website(transcript, message):
-    # Implement the logic for processing website URL here
-    pass
 
 @app.route('/process_transcript', methods=['POST', 'OPTIONS'])
 @cross_origin(origin='http://127.0.0.1:3000', supports_credentials=True)
@@ -58,11 +33,9 @@ def process_transcript():
     fileName = data['fileName']
 
     if fileName is not None: 
-
+        #save transfered pdf for later use
         base64_to_pdf(transcript, fileName)
-
         requests.post('http://localhost:3000/process_success', json={'message': "PDF saved"})
-
         return jsonify({'message': "PDF saved", 'status': 'Transcript processed successfully'})
 
     else:
@@ -71,34 +44,35 @@ def process_transcript():
         print(f"Received message: {message}")
 
         if transcript is not None:
+            #received pdf file
             if transcript.endswith(".pdf"):
                 print("Received PDF")
                 response_from_ollama = handle_pdf(f"saved_pdfs/{transcript}", message)
+            #received image
             elif transcript.startswith("data:image"):
                 print("Received Image")
                 response_from_ollama = take_command_llava_image(transcript, message)
 
         elif is_url(message):
+            #received url
             print("Received URL")
             response_from_ollama = scan_website_llama2(message)
 
         else:
+            #received message
             print("Received Plain Text")
             response_from_ollama = take_command_llama2(message)
     
         requests.post('http://localhost:3000/process_success', json={'message': response_from_ollama})
-
         return jsonify({'message': response_from_ollama, 'status': 'Transcript processed successfully'})
 
-
-
-
+#covert base64 to pdf
 def base64_to_pdf(base64_string, filename):
     try:
-        # Decode the base64 string
+        #decode the base64 string
         pdf_bytes = base64.b64decode(base64_string)
         
-        # Write the decoded bytes to a PDF file with the provided filename
+        #write the decoded bytes to a PDF file with the provided filename
         with open(f"saved_pdfs/{filename}", 'wb') as f:
             f.write(pdf_bytes)
         
@@ -107,16 +81,15 @@ def base64_to_pdf(base64_string, filename):
         print("Error:", e)
 
 
-import re
-
+#check if message contains a url
 def is_url(message):
-    # Define the URL pattern
+    #define the URL pattern
     url_pattern = re.compile(r'https?://\S+|www\.\S+')
 
-    # Find all matches in the text
+    #find all matches in the text
     found_links = re.findall(url_pattern, message)
 
-    # Return True if any links are found, False otherwise
+    # return True if any links are found, False otherwise
     return bool(found_links)
 
 

@@ -10,7 +10,7 @@ const canvasElement = document.getElementById("canvas");
 const webcam = new Webcam(webCamElement, "user", canvasElement);
 
 
-// Check if SpeechRecognition API is available
+//check if SpeechRecognition API is available
 if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
     console.log('Speech Recognition API is available');
 } else {
@@ -18,34 +18,7 @@ if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
 }
 
 
-function speak(text) {
-    console.log("Speaking...")
-    const text_speak = new SpeechSynthesisUtterance(text);
-
-        text_speak.rate = 0.9;
-        text_speak.volume = 0.5;
-        text_speak.pitch = 0.9;
-
-        // Speak the text using the chosen voice
-        window.speechSynthesis.speak(text_speak);
-
-};
-
-
-
-function wishMe() {
-    var day = new Date();
-    var hour = day.getHours();
-
-    if (hour >= 0 && hour < 12) {
-        speak("Good Morning Boss...");
-    } else if (hour >= 12 && hour < 17) {
-        speak("Good Afternoon Master...");
-    } else {
-        speak("Good Evening Sir...");
-    }
-}
-
+//onload functions when user loads page
 window.addEventListener('load', () => {
     document.getElementById("selected1").style.opacity = "0";
     document.getElementById("selected2").style.opacity = "0";
@@ -57,6 +30,13 @@ window.addEventListener('load', () => {
     wishMe();
 });
 
+//btn listener for microphone
+btn.addEventListener('click', () => {
+    content.textContent = "Listening....";
+    recognition.start();
+});
+
+//if recognition succesful send to AI
 recognition.onresult = async (event) => {
     const currentIndex = event.resultIndex;
     const transcript = event.results[currentIndex][0].transcript;
@@ -66,16 +46,18 @@ recognition.onresult = async (event) => {
 };
 
 
+//if user sends message, send it to the AI
 function sendMessage() {
     var userInput = document.getElementById("user-input").value;
 
-    // Clear the input field
+    //clear the input field
     document.getElementById("user-input").value = "";
 
     prepareTranscript(userInput, null, true);
 }
 
 
+//function to prepare files and message for the AI
 function prepareTranscript(message, data, textbased) {
     savedImageData = localStorage.getItem('image_data');
 
@@ -105,6 +87,7 @@ function prepareTranscript(message, data, textbased) {
 }
 
 
+//function to send files to python server and wait for response
 async function saveTranscriptToFlask(transcript, message) {
     console.log("transcript send by app.js "  + transcript);
     console.log("message send by app.js: " + message);
@@ -126,8 +109,7 @@ async function saveTranscriptToFlask(transcript, message) {
             addToQueue('animation/random/nothing_2.mkv');
             addAssistantMessage(serverMessage);
             speak(serverMessage);
-    
-            // Do something with the serverMessage if needed
+            
         } else {
             console.log('Error from Flask server:', response.status, response.statusText);
         }
@@ -136,64 +118,31 @@ async function saveTranscriptToFlask(transcript, message) {
     }      
 }
 
-btn.addEventListener('click', () => {
-    content.textContent = "Listening....";
-    recognition.start();
-});
 
 
+//functions for text to speach (experimental)
+function speak(text) {
+    console.log("Speaking...")
+    const text_speak = new SpeechSynthesisUtterance(text);
 
-function addUserMessage(transcript) {
+        text_speak.rate = 0.9;
+        text_speak.volume = 0.5;
+        text_speak.pitch = 0.9;
 
-    text_paragraph = addParagraphs(transcript);
-    var chatContainer = document.getElementById("chat-container");
-    var userMessage = document.createElement("div");
-    userMessage.className = "chat-message user-message-chat";
-    userMessage.innerHTML = "<p>User: " + text_paragraph + "</p>";
+        //speak the text using the chosen voice
+        window.speechSynthesis.speak(text_speak);
+};
 
-    chatContainer.appendChild(userMessage);
-    scrollToBottom();
-}
+//function to greet the user
+function wishMe() {
+    var day = new Date();
+    var hour = day.getHours();
 
-function addAssistantMessage(message) {
-    console.log(message)
-
-    try {
-        text_paragraph = addParagraphs(message);
-    } catch (error) {
-
-        const obj = JSON.parse(message);
-
-        console.log(obj.result);
-        
+    if (hour >= 0 && hour < 12) {
+        speak("Good Morning Boss...");
+    } else if (hour >= 12 && hour < 17) {
+        speak("Good Afternoon Master...");
+    } else {
+        speak("Good Evening Sir...");
     }
-    
-    var chatContainer = document.getElementById("chat-container");
-    var assistantMessage = document.createElement("div");
-    assistantMessage.className = "chat-message assistant-message";
-    assistantMessage.innerHTML = "<p>Karl: " + text_paragraph + "</p>";
-
-    chatContainer.appendChild(assistantMessage);
-    scrollToBottom();
 }
-
-
-function addParagraphs(text) {
-
-    var paragraphs = text.split("\n");
-        
-        var fullText = '';
-
-        paragraphs.forEach(function(paragraph) {
-            fullText += '<p>' + paragraph + '</p>';
-        });
-
-        return fullText;
-}
-
-
-function scrollToBottom() {
-    var chatContainer = document.getElementById("scroll");
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-  }
-  
