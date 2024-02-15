@@ -60,7 +60,6 @@ KARL's intelligence operates locally and can function without internet connectiv
 
 ## 📜 ⬇️ Installation guide
 
-Installation Guide
 This guide will walk you through the installation process step by step.
 
 ### Step 1: Update Package Manager
@@ -101,9 +100,10 @@ This guide will walk you through the installation process step by step.
 
     sudo reboot
 
-### Step 9: Path where project is located
+### Step 9: Start server
 
-    cd KARL
+    cd KARL-Server #where project is located
+    chmod +x server-start.sh
     ./server-start.sh
 
 ## 👥 The team
