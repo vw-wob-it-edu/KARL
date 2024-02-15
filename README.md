@@ -86,21 +86,27 @@ This guide will walk you through the installation process step by step.
 
     sudo curl https://ollama.ai/install.sh | sh
 
-### Step 6: Clone KARL Repository
+### Step 6: Pull required LLMs
+
+    ollama serve
+    ollama pull llava
+    ollama pull llama2
+
+### Step 7: Clone KARL Repository
 
     cd Desktop
     git clone https://github.com/vw-wob-it-edu/KARL.git
     cd KARL`
 
-### Step 7: Install Python Requirements
+### Step 8: Install Python Requirements
 
     pip install -r requirements.txt
 
-### Step 8: Reboot System
+### Step 9: Reboot System
 
     sudo reboot
 
-### Step 9: Start server
+### Step 10: Start server
 
     cd KARL-Server #where project is located
     chmod +x server-start.sh
