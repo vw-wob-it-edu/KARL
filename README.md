@@ -101,7 +101,7 @@ This guide will walk you through the installation process step by step.
 
     cd Desktop
     git clone https://github.com/vw-wob-it-edu/KARL.git
-    cd KARL`
+    cd KARL
 
 ### Step 8: Install Python Requirements
 
