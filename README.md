@@ -63,15 +63,15 @@ KARL's intelligence operates locally and can function without internet connectiv
 Installation Guide
 This guide will walk you through the installation process step by step.
 
-## Step 1: Update Package Manager
+### Step 1: Update Package Manager
 
 `sudo apt update`
 
-## Step 2: Install Required Packages
+### Step 2: Install Required Packages
 
 `sudo apt install curl git nodejs npm python3 python3-pip wget`
 
-## Step 3: Install Additional Packages
+### Step 3: Install Additional Packages
 
 `sudo apt full-upgrade`
 
@@ -81,16 +81,16 @@ This guide will walk you through the installation process step by step.
 
 `sudo apt-get install -f`
 
-## Step 4: Install Python Libraries
+### Step 4: Install Python Libraries
 
 `pip install flask flask-cors langchain`
 
 
-## Step 5: Install Ollama
+### Step 5: Install Ollama
 
 `sudo curl https://ollama.ai/install.sh | sh`
 
-## Step 6: Clone KARL Repository
+### Step 6: Clone KARL Repository
 
 `cd Desktop`
 
@@ -98,15 +98,15 @@ This guide will walk you through the installation process step by step.
 
 `cd KARL`
 
-## Step 7: Install Python Requirements
+### Step 7: Install Python Requirements
 
 `pip install -r requirements.txt`
 
-## Step 8: Reboot System
+### Step 8: Reboot System
 
 `sudo reboot`
 
-## Step 9: Path where project is located
+### Step 9: Path where project is located
 
 `cd KARL`
 
