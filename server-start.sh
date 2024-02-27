@@ -19,13 +19,7 @@ run_python_script() {
     gnome-terminal --title="Python Script" -- bash -c "python3 python.py; exec bash"
 }
 
-run_llama2() {
-    echo "Running 'ollama run llama2'..."
-    gnome-terminal --title="Llama2" -- bash -c "ollama run llama2; exec bash"
-}
-
 run_serve
 start_node_server
 run_python_script
-run_llama2
 
