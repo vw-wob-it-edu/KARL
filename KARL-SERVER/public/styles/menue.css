@@ -10,6 +10,7 @@
     transform: translateX(120%);
     visibility: hidden;
     right: 0;
+    margin-right: 5%;
 }
 
 .navbar_hedding {
@@ -17,12 +18,13 @@
     font-weight: 800;
     text-align: right;
     padding: 16px 0;
-    padding-right: 40%;
+    padding-right: 30%;
     margin-top: 6%;
     pointer-events: none;
-    margin-bottom: 62%;
-    font-size: 2vw;
+    margin-bottom: 50%;
+    font-size: 1vw;
 }
+
 
 .menu_list {
     width: 100%;
@@ -35,12 +37,12 @@
     color: black;
     font-weight: 500;
     display: block;
-    padding: 5%;
+    padding: 10%;
     padding-top: 25%;
     text-transform: capitalize;
     text-decoration: none;
     transition: 0.1s ease-out;
-    font-size: 1.6vw;
+    font-size: 1vw;
 }
 
 .menu_list a i {
